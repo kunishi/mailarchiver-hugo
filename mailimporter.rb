@@ -32,6 +32,7 @@ blogs.each do |blog|
   post_ext = ".md"
   post_filename = blog['posts_dir'] + "/" + post_id + post_ext
   body = nil
+  subject = Kconv.toutf8(mail.subject.gsub(/"/, '\"'))
 
   if mail.multipart?
     if mail.html_part
@@ -46,7 +47,7 @@ blogs.each do |blog|
   open(post_filename, "w") do |file|
     file << "---\n"
     file << "layout: post\n"
-    file << "title: \"#{mail.subject.gsub(/"/, '\"')}\"\n"
+    file << "title: \"#{subject}\"\n"
     file << "date: #{date.strftime("%Y-%m-%d %H:%M:%S %z")}\n"
     file << "---\n"
     file << "<pre>\n"
