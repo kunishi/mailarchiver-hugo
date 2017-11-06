@@ -5,7 +5,8 @@ require 'yaml'
 require 'mail'
 require 'kconv'
 
-yaml = YAML::load(File.open('_config.yml'))
+config_yml = File.expand_path(File.dirname(__FILE__)) + '/_config.yml'
+yaml = YAML::load(File.open(config_yml))
 blogs = yaml['blog']
 blogs.each do |blog|
   blog['assets_dir'] ||= 'assets/dbjapan'
