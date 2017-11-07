@@ -11,7 +11,7 @@ blogs = yaml['blog']
 blogs.each do |blog|
   blog['assets_dir'] ||= 'assets/dbjapan'
   #blog['posts_dir'] ||= '_posts'
-  blog['posts_dir'] ||= '../dbjapan-hugo/content/ml_archives'
+  blog['posts_dir'] ||= '../../dbjapan-hugo/content/ml_archives'
 
   if ARGV[0]
     filename = ARGV[0]
