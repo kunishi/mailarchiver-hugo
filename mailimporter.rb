@@ -34,7 +34,7 @@ blogs.each do |blog|
   post_ext = ".md"
   post_filename = blog['posts_dir'] + "/" + post_id + post_ext
   body = nil
-  subject = Kconv.toutf8(mail.subject.gsub(/"/, '\"'))
+  subject = Kconv.toutf8(mail.subject.gsub(/"/, '\"')) if mail.subject
 
   if mail.multipart?
     if mail.text_part
@@ -44,6 +44,10 @@ blogs.each do |blog|
     end
   else
     body = Kconv.toutf8(mail.body.decoded)
+  end
+
+  mail.attachments.each do |attach|
+    print attach.mime_type, ":", attach.filename, "\n"
   end
 
   open(post_filename, "w") do |file|
