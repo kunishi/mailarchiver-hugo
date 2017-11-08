@@ -78,13 +78,14 @@ blogs.each do |blog|
     file << "title: \"#{subject}\"\n"
     file << "date: #{date.to_s}\n"
     file << "type: ml_archive\n"
-    file << "from: '#{mail.from.first}'\n"
-    file << "message_id: '#{mail.message_id}'\n"
-    file << "post_id: #{post_id}\n"
-    file << "attachments:\n" if !attachments.empty?
+    file << "params:\n"
+    file << "  from: '#{mail.from.first}'\n"
+    file << "  message_id: '#{mail.message_id}'\n"
+    file << "  post_id: #{post_id}\n"
+    file << "  attachments:\n" if !attachments.empty?
     attachments.each do |name, filename|
-      file << "  - name: '#{name}'\n"
-      file << "    filename: '#{filename}'\n"
+      file << "    - name: '#{name}'\n"
+      file << "      filename: '#{filename}'\n"
     end
     file << "---\n"
     file << "<pre>\n"
